@@ -1,0 +1,38 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      Lista Angular com spring
+    </a>
+  </div>
+</nav>
+
+<div class="container mt-3" >
+  <h3>Lista</h3>
+  <hr/>
+ <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" class="form-control" formControlName="descricao">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" [disabled]="!form.get('descricao').valid" class="btn btn-primary">Adiconar</button>
+        </div>
+    </div>
+ </form>
+ <hr/>
+  <div class="row">
+      <div class="col-md-6">
+          <ul class="list-group">
+              <li *ngFor="let produto of produtos" class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="{{produto.finalizado ? 'finalizado' : ''}}">
+                  {{produto.descricao}}
+                </span>
+                  <div class="btn-group">
+                    <button type="button" [disabled]="produto.finalizado" (click)="concluidoPedido(produto)" class="btn btn-success">Feito</button>
+                    <button type="button" (click)="delete(produto)" class="btn btn-danger">Excluir</button>
+                  </div>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>
